@@ -34,7 +34,7 @@ class NmodSpider(CrawlSpider):
         item['format'] = response.xpath('//div[contains(@class, "alert")]/p/text()').re(u'(?<=格式：).+')
         item['label'] = response.xpath('//div[@class="article-tags"]/a/text()').extract()
         item['date'] = response.xpath('//div[contains(@class, "alert")]/p/text()').re('\d\d\d\d-\d\d-\d\d')
-        item['isbn'] = response.xpath('//div[contains(@class, "alert")]/p/text()').re('(?<=ISBN).*[0-9]+')
+        item['isbn'] = response.xpath('//div[contains(@class, "alert")]/p/text()').re(u'(?<=ISBN[:： ]).*[0-9]+')
         item['content'] = response.xpath('//article[contains(@class, "article-content")]/p/text()').extract()
         item['number'] = response.xpath('//table//td/text()').re(u'(?<=大小：).+')
         item['download'] = response.xpath('//table//td[@colspan]/a/text()').extract()
