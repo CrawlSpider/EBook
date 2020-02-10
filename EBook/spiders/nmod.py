@@ -30,13 +30,14 @@ class NmodSpider(CrawlSpider):
         """
         item = {}
         item['title'] = response.xpath('//div[contains(@class, "alert")]/p/img/@title').extract()
-        item['author'] = response.xpath('//div[contains(@class, "alert")]/p/text()').re('(?<=作者：).+')
-        item['format'] = response.xpath('//div[contains(@class, "alert")]/p/text()').re('(?<=格式：).+')[0].split('/')
+        item['author'] = response.xpath('//div[contains(@class, "alert")]/p/text()').re(u'(?<=作者：).+')
+        #item['format'] = response.xpath('//div[contains(@class, "alert")]/p/text()').re('(?<=格式：).+')[0].split('/')
+        item['format'] = response.xpath('//div[contains(@class, "alert")]/p/text()').re(u'(?<=格式：).+')
         item['label'] = response.xpath('//div[@class="article-tags"]/a/text()').extract()
         item['date'] = response.xpath('//div[contains(@class, "alert")]/p/text()').re('\d\d\d\d-\d\d-\d\d')
-        item['isbn'] = response.xpath('//div[contains(@class, "alert")]/p/text()').re('(?<=ISBN：).+')
+        item['isbn'] = response.xpath('//div[contains(@class, "alert")]/p/text()').re(u'(?<=ISBN：).+')
         item['content'] = response.xpath('//article[contains(@class, "article-content")]/p/text()').extract()
-        item['number'] = response.xpath('//table//td/text()').re('(?<=大小：).+')
+        item['number'] = response.xpath('//table//td/text()').re(u'(?<=大小：).+')
         item['download'] = response.xpath('//table//td[@colspan]/a/text()').extract()
         item['comment_cnt'] = response.xpath('//*[contains(@class, "comments")]/../a/text()').re('[0-9]+')
         #number = response.xpath('//*[contains(@class, "comments")]/../a/text()').re('[0-9]+')
