@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import scrapy
+import re
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.loader.processors import MapCompose, Join
@@ -21,6 +22,7 @@ class NmodSpider(CrawlSpider):
         Rule(LinkExtractor(restrict_xpaths='//li[contains(@class, "next-page")]/a'), follow=True),
     )
 
+    
     def parse_item(self, response):
         """
         @url https://www.nmod.net
@@ -34,9 +36,12 @@ class NmodSpider(CrawlSpider):
         item['format'] = response.xpath('//div[contains(@class, "alert")]/p/text()').re(u'(?<=格式：).+')
         item['label'] = response.xpath('//div[@class="article-tags"]/a/text()').extract()
         item['date'] = response.xpath('//div[contains(@class, "alert")]/p/text()').re('\d\d\d\d-\d\d-\d\d')
-        item['isbn'] = response.xpath('//div[contains(@class, "alert")]/p/text()').re(u'(?<=ISBN[:： ]).*[0-9]+')
+        isbn = response.xpath('//div[contains(@class, "alert")]/p/text()').re(u'(?<=ISBN[:：]).*[0-9]+')
+        item['isbn'] = MapCompose(str.strip)(isbn)
         item['content'] = response.xpath('//article[contains(@class, "article-content")]/p/text()').extract()
-        item['number'] = response.xpath('//table//td/text()').re(u'(?<=大小：).+')
+        size = response.xpath('//table//td/text()').re(u'(?<=大小：)[.0-9MmKkBb]+')
+        fun_k2m = lambda x : str('%.2f'%(float(re.sub('[KB]', '', x)) / 1024))
+        item['number'] = [x if 'M' in x else x if 'K' not in x else fun_k2m(x)+'MB' for x in size]
         item['download'] = response.xpath('//table//td[@colspan]/a/text()').extract()
         item['comment_cnt'] = response.xpath('//*[contains(@class, "comments")]/../a/text()').re('[0-9]+')
         #number = response.xpath('//*[contains(@class, "comments")]/../a/text()').re('[0-9]+')
