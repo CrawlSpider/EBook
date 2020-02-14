@@ -1,5 +1,5 @@
 # EBook
-![](https://img.shields.io/badge/python3-yes-brightgreen.svg) ![](https://img.shields.io/badge/python2-no-blue.svg)
+![](https://img.shields.io/badge/python3-Yes-brightgreen.svg) ![](https://img.shields.io/badge/python2-No-blue.svg)
 
 - scrapy 框架爬虫的第一个练习代码
 - 尝试爬取 NMOD 图书目录
@@ -16,9 +16,11 @@
             )]
 	```   
 - python2 需要修改 nmode.py 的如下位置，一共有 **4** 处   
-	``` python MapCompose(str.strip)(xxxxx) ```  
-	改为  
-	``` MapCompose(unicode.strip)(xxxxx) ```
+	```python 
+	MapCompose(str.strip)(xxxxx) 
+	改为 
+	MapCompose(unicode.strip)(xxxxx)
+	```
 
 
 #### 运行
