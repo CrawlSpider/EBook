@@ -18,9 +18,11 @@
             )]
 	```   
 - python2 需要修改 nmode.py 的如下位置，一共有 **4** 处   
-	``` python MapCompose(str.strip)(xxxxx) ```  
+	```python 
+	MapCompose(str.strip)(xxxxx) 
 	改为  
-	``` MapCompose(unicode.strip)(xxxxx) ```
+	MapCompose(unicode.strip)(xxxxx)
+	```
 
 
 #### 运行
@@ -29,4 +31,4 @@
 - 限制启动（仅爬取一个 item，测试用）    
 	`scrapy crawl nmod -s CLOSESPIDER_ITEMCOUNT=1`
 - 将爬取的内容存入 CSV 文件以便用 excel 查看    
-	`scrapy crawl nmod -o nmod.csv -s FEED_EXPORT_ENCODING="gb18030"`
+	`scrapy crawl nmod -o nmod.csv -s FEED_EXPORT_ENCODING="gb18030"` 
