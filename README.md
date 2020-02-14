@@ -1,6 +1,6 @@
 # EBook
 ## `这是爬虫管理平台 crawlab 专用适配版本`
-![](https://img.shields.io/badge/python3-yes-brightgreen.svg) ![](https://img.shields.io/badge/python2-no-blue.svg)
+![](https://img.shields.io/badge/python3-Yes-brightgreen.svg) ![](https://img.shields.io/badge/python2-No-blue.svg)
 
 - scrapy 框架爬虫的第一个练习代码
 - 尝试爬取 NMOD 图书目录
