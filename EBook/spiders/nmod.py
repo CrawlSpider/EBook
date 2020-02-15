@@ -44,7 +44,7 @@ class NmodSpider(CrawlSpider):
         @url https://www.nmod.net
         @returns items 1
         @returns requests 0 0
-        @scrapes title author format label date isbn content size download comment_cnt heart_cnt share_cnt
+        @scrapes title author format label isbn sizeMB book_page down_url
         """
         item = {}
         #
