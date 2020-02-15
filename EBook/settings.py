@@ -17,6 +17,7 @@ NEWSPIDER_MODULE = 'EBook.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'EBook (+http://www.yourdomain.com)'
+USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.20 (KHTML, like Gecko) Chrome/19.0.1036.7 Safari/535.20'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
